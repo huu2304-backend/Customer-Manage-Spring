@@ -2,26 +2,39 @@ package com.university.springmvccustomermanagement.service.impl;
 
 import com.university.springmvccustomermanagement.model.Customer;
 import com.university.springmvccustomermanagement.service.CustomerService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class SimpleCustomerServiceImpl implements CustomerService {
-    private static Map<Integer, Customer> customer;
+    private static Map<Long, Customer> customers;
+
     static {
-        customer = new HashMap<>();
-        customer.put(1, new Customer(1, "Yasuo", "yassuo@gmail.com", "Ilonia"));
-        customer.put(2, new Customer(2, "Zed", "zed@gmail.com", "Ionia"));
+        customers = new HashMap<>();
+        customers.put(1L, new Customer(1L, "Nguyen Khac Nhat", "nhat@codegym.vn", "Ha Noi"));
+        customers.put(2L, new Customer(2L, "Dang Huy Hoa", "hoa.dang@codegym.vn", "Da Nang"));
+        customers.put(3L, new Customer(3L, "Le Thi Chau", "chau.le@codegym.vn", "Ha Noi"));
+        customers.put(4L, new Customer(4L, "Nguyen Thuy Duong", "duong.nguyen@codegym.vn", "Sai Gon"));
+        customers.put(5L, new Customer(5L, "CodeGym", "codegym@codegym.vn", "Viet Nam"));
     }
+
     @Override
     public List<Customer> findAll() {
-        return new ArrayList<>(customer.values());
+        return new ArrayList<>(customers.values());
     }
+
     @Override
-    public Customer findById(int id) {
-        return customer.get(id);
+    public Customer findById(Long id) {
+        return customers.get(id);
+    }
+
+    @Override
+    public void save(Customer customer) {
+        customers.put(customer.getId(), customer);
     }
 
 }

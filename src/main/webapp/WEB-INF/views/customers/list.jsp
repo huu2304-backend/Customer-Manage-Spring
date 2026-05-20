@@ -1,51 +1,65 @@
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
-    <title>Customer List</title>
+    <title>Customers List</title>
     <style>
-        table{
-            border: 1px solid #000;
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f8f8f8; }
+        h1 { color: #333; }
+        table {
+            width: 80%;
             border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff;
         }
-        th,td{
-            border:1px dotted #555;
-            padding: 8px;
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
             text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<h1>Customer List</h1>
+<h1>Customers List</h1>
 <p>There are ${customers.size()} customer(s) in list.</p>
 <table>
-    <caption>Customers list</caption>
     <thead>
     <tr>
-        <th>ID</th>
+        <th>Id</th>
         <th>Name</th>
         <th>Email</th>
         <th>Address</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${customers}" var="c">
-
-
-    <tr>
-        <td>
-            <c:out value="${c.id}"/>
-        </td>
-        <td>
-            <a href="${pageContext.request.contextPath}/customer/detail?id=${c.id}">${c.name}</a>
-        </td>
-        <td>
-            <c:out value="${c.email}"/>
-        </td>
-        <td>
-            <c:out value="${c.address}"/>
-        </td>
-    </tr>
+    <c:forEach var="c" items="${customers}">
+        <tr>
+            <td>
+                <c:out value="${c.id}"/>
+            </td>
+            <td>
+                <a href="${pageContext.request.contextPath}/customers/${c.id}">${c.name}</a>
+            </td>
+            <td>
+                <c:out value="${c.email}"/>
+            </td>
+            <td>
+                <c:out value="${c.address}"/>
+            </td>
+        </tr>
     </c:forEach>
     </tbody>
 </table>

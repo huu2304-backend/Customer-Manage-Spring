@@ -1,11 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 18/05/2026
-  Time: 8:38 SA
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
     <title>Customer Detail</title>
@@ -80,26 +74,29 @@
     </style>
 </head>
 <body>
-<div class="customer-info-container">
-    <h2>Customer Information</h2>
-    <p>
-        <strong>Id:</strong>
-        <input type="text" value= ${customer.id}>
-    </p>
-    <p>
-        <strong>Name:</strong>
-        <input type="text" value= ${customer.name}>
-    </p>
-    <p>
-        <strong>Email:</strong>
-        <input type="text" value= ${customer.email}>
-    </p>
-    <p>
-        <strong>Address:</strong>
-        <input type="text" value= ${customer.address}>
-    </p>
-    <button>Update</button>
-</div>
-<p><a href="${pageContext.request.contextPath}/customer">Back to list</a></p></head>
+<form method="post" action="${pageContext.request.contextPath}/customers/update">
+    <div class="customer-info-container">
+        <h2>Customer Information</h2>
+        <p>
+            <strong>Id:</strong>
+            <input type="hidden" name="id" value="<c:out value="${customer.id}"/>">
+            <input type="text" value="<c:out value="${customer.id}"/>" readonly>
+        </p>
+        <p>
+            <strong>Name:</strong>
+            <input type="text" name="name" value="<c:out value="${customer.name}"/>">
+        </p>
+        <p>
+            <strong>Email:</strong>
+            <input type="text" name="email" value="<c:out value="${customer.email}"/>">
+        </p>
+        <p>
+            <strong>Address:</strong>
+            <input type="text" name="address" value="<c:out value="${customer.address}"/>">
+        </p>
+        <button>Update</button>
+    </div>
+</form>
+<p><a href="${pageContext.request.contextPath}/customers">Back to list</a></p>
 </body>
 </html>
